@@ -1,5 +1,4 @@
 import { createReducer, createActions } from 'reduxsauce'
-import { fromJS } from 'immutable'
 import Web3 from '../services/web3';
 
 const { Types, Creators } = createActions({
@@ -13,15 +12,15 @@ export const INITIAL_STATE = {};
 
 export const providerChanged = (state, { web3 }) => {
   window._web3 = web3;
-  return state.set('web3', web3);
+  return { ...state, web3 };
 }
 export const setAccounts = (state, { accounts }) => {
-  return state.set('accounts', accounts);
+  return { ...state, accounts };
 }
 
 export const loadAccounts = (web3) => (dispatch) => {
   web3.eth.getAccounts((error, accounts) => {
-    if(!error) dispatch(Creators.setAccounts(accounts));
+    if (!error) dispatch(Creators.setAccounts(accounts));
   });
 }
 
@@ -33,7 +32,7 @@ export const changeProvider = (url) => (dispatch) => {
   });
 }
 
-export const reducer = (web3) => createReducer(fromJS({ ...INITIAL_STATE, web3 }), {
+export const reducer = (web3) => createReducer({ ...INITIAL_STATE, web3 }, {
   [Types.PROVIDER_CHANGED]: providerChanged,
   [Types.SET_ACCOUNTS]: setAccounts,
 })

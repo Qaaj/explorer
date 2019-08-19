@@ -11,6 +11,7 @@ class ProvidersDropdown extends React.Component {
       selectedIndex: 0,
 
       options: [
+        { key: 'mainnet', text: 'Main Net', value: 'https://mainnet.infura.io/A6JlogMFVWgkE7v6pwMO' },
         { key: 'ropsten', text: 'Ropsten', value: 'https://ropsten.infura.io/A6JlogMFVWgkE7v6pwMO' },
         { key: 'rinkeby', text: 'Rinkeby', value: 'https://rinkeby.infura.io/KEyTvyJruqUAlQc7igSQ' },
         { key: 'localhost:8545', text: 'localhost:8545', value: 'http://localhost:8545' },
@@ -36,17 +37,18 @@ class ProvidersDropdown extends React.Component {
 
     if (providerName.indexOf('HttpProvider') > -1) {
 
-      if (this.props.web3.currentProvider.host.indexOf('ropsten') > -1) {
-        providerName += ` - Ropsten`;
-      } else if (this.props.web3.currentProvider.host.indexOf('rinkeby') > -1) {
-        providerName += ` - Rinkeby`;
+      if (this.props.web3.currentProvider.host.indexOf('ropsten') !== -1) {
+        providerName = 'ropsten'
+      } else if (this.props.web3.currentProvider.host.indexOf('rinkeby') !== -1) {
+        providerName = 'rinkeby'
       } else {
         providerName = "Custom";
       }
-    } else if (providerName.indexOf('MetamaskInpageProvider') > -1) {
-      providerName = "MetaMask"
+    } else if (providerName.indexOf('MetamaskInpageProvider') !== -1) {
+      providerName = "injected"
     }
 
+    console.log(providerName);
     return (<DropdownBase placeholder={providerName}
                           options={options}
                           onChange={(value) => this.onChangeHandler(value)} />);
@@ -58,7 +60,7 @@ ProvidersDropdown.propTypes = {};
 
 const mapStateToProps = (state) => {
   return {
-    web3: state.settings.get('web3'),
+    web3: state.settings.web3,
   };
 };
 

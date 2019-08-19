@@ -1,2 +1,2 @@
 # explorer
-Ethereum Blockchain Explorer using Cytoscap and LineUp
+Ethereum Blockchain Explorer using Cytoscape and LineUp
