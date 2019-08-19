@@ -17,8 +17,8 @@ class Web3Service {
       if (ok) return ok(this.web3);
     }
     else {
-      const provider = new Web3.providers.HttpProvider(url || 'http://127.0.0.1:9545')
-      // const provider = new Web3.providers.HttpProvider('https://ropsten.infura.io/A6JlogMFVWgkE7v6pwMO ')
+      // const provider = new Web3.providers.HttpProvider(url || 'http://127.0.0.1:9545')
+      const provider = new Web3.providers.HttpProvider('https://mainnet.infura.io/A6JlogMFVWgkE7v6pwMO')
       this.web3 = new Web3(provider)
       console.log('prov ' , provider)
       if (ok) return ok(this.web3)

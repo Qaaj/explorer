@@ -48,7 +48,6 @@ class ProvidersDropdown extends React.Component {
       providerName = "injected"
     }
 
-    console.log(providerName);
     return (<DropdownBase placeholder={providerName}
                           options={options}
                           onChange={(value) => this.onChangeHandler(value)} />);

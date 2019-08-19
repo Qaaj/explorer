@@ -17,20 +17,18 @@ export default function rootReducer(state = initialState, action) {
       };
     case FETCH_BLOCK.SUCCESS:
       return {
-        whiskies: [...action.payload],
+        blocks: {...state.blocks, [action.payload.number]: action.payload },
         // whenever the fetching finishes, we stop showing the spinner and then show the data
         isLoading: false,
         error: null
       };
     case FETCH_BLOCK.FAILURE:
       return {
-        whiskies: [],
+        blocks: {...state.blocks, [action.payload.number]: { error: action.payload} },
         isLoading: false,
         // same as FETCH_WHISKIES_SUCCESS, but instead of data we will show an error message
-        error: action.payload
       };
     default:
       return state;
   }
 }
-

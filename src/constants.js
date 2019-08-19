@@ -8,7 +8,7 @@ const createConstants = (str) => {
 
 const createActions = (str) => {
   return {
-    start: () => ({ type: str.START }),
+    start: (payload) => ({ type: str.START, payload }),
     success: (data) => ({ type: str.SUCCESS, payload: data }),
     failure: (err) => ({ type: str.FAILURE, error: err }),
   }

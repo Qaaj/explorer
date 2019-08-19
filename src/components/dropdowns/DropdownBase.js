@@ -1,6 +1,6 @@
 import React from 'react'
 import { Label, Select } from '@rebass/forms'
-import { Heading, Box } from 'rebass'
+import { Box } from 'rebass'
 
 const DropdownBase = ({ placeholder, options, onChange }) => {
   return (
@@ -23,12 +23,5 @@ const DropdownBase = ({ placeholder, options, onChange }) => {
       </Box>
   );
 }
-
-{/*<Dropdown button*/}
-{/*          color="red"*/}
-{/*          style={style}*/}
-{/*          text={`Network: ${placeholder}`}*/}
-{/*          options={options}*/}
-{/*          onChange={onChange} />*/}
 
 export default DropdownBase;
