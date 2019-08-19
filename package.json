@@ -1,0 +1,40 @@
+{
+  "name": "explorer",
+  "version": "1.0.0",
+  "description": "Ethereum Blockchain Explorer using Cytoscape and LineUp",
+  "main": "index.js",
+  "dependencies": {
+    "@rebass/forms": "^4.0.3",
+    "@rebass/preset": "^4.0.3",
+    "components": "^0.1.0",
+    "emotion-theming": "^10.0.14",
+    "immutable": "^4.0.0-rc.12",
+    "parcel-bundler": "^1.12.3",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
+    "react-redux": "^7.1.0",
+    "rebass": "^4.0.3",
+    "redux": "^4.0.4",
+    "redux-observable": "^1.1.0",
+    "redux-thunk": "^2.3.0",
+    "reduxsauce": "^1.1.0",
+    "rxjs": "^6.5.2",
+    "rxjs-compat": "^6.5.2",
+    "semantic-ui-react": "^0.87.3",
+    "src": "^1.1.2",
+    "web3": "^1.2.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.5.5",
+    "@babel/core": "^7.5.5",
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "@babel/preset-react": "^7.0.0"
+  },
+  "scripts": {
+    "start": "parcel index.html",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
