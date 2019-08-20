@@ -1,9 +1,7 @@
 import { FETCH_BLOCK } from '../constants';
 
 const initialState = {
-  blocks: {}, // for this example we'll make an app that fetches and lists whiskies
-  isLoading: false,
-  error: false,
+  blocks: {}, 
 }
 
 export default function rootReducer(state = initialState, action) {
@@ -11,22 +9,15 @@ export default function rootReducer(state = initialState, action) {
     case FETCH_BLOCK.START:
       return {
         ...state,
-        // whenever we want to fetch the whiskies, set isLoading to true to show a spinner
-        isLoading: true,
-        error: null
+        blocks: { ...state.blocks, [action.payload]: { isLoading: true } },
       };
     case FETCH_BLOCK.SUCCESS:
       return {
-        blocks: {...state.blocks, [action.payload.number]: action.payload },
-        // whenever the fetching finishes, we stop showing the spinner and then show the data
-        isLoading: false,
-        error: null
+        blocks: { ...state.blocks, [action.payload.number]: action.payload },
       };
     case FETCH_BLOCK.FAILURE:
       return {
-        blocks: {...state.blocks, [action.payload.number]: { error: action.payload} },
-        isLoading: false,
-        // same as FETCH_WHISKIES_SUCCESS, but instead of data we will show an error message
+        blocks: { ...state.blocks, [action.payload]: { isLoading: false, error: action.payload } },
       };
     default:
       return state;

@@ -15,4 +15,12 @@ const createActions = (str) => {
 }
 
 export const FETCH_BLOCK = createConstants('FETCH_BLOCKS');
+export const FETCH_HEIGHT = createConstants('FETCH_HEIGHT');
+export const FETCH_TX = createConstants('FETCH_TX');
+export const POLLING = createConstants('POLLING');
+
 export const fetchBlock = createActions(FETCH_BLOCK);
+export const fetchHeight = createActions(FETCH_HEIGHT);
+export const fetchTx = createActions(FETCH_TX);
+export const polling = createActions(POLLING);
+console.log(polling);
