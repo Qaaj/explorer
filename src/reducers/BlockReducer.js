@@ -1,11 +1,14 @@
-import { FETCH_BLOCK } from '../constants';
+import { FETCH_BLOCK, FETCH_HEIGHT } from '../constants';
 
 const initialState = {
-  blocks: {}, 
+  blocks: {},
 }
 
 export default function rootReducer(state = initialState, action) {
   switch (action.type) {
+    case FETCH_HEIGHT.SUCCESS: {
+      return { ...state, blockHeight: action.payload }
+    }
     case FETCH_BLOCK.START:
       return {
         ...state,
@@ -13,11 +16,14 @@ export default function rootReducer(state = initialState, action) {
       };
     case FETCH_BLOCK.SUCCESS:
       return {
+        ...state,
         blocks: { ...state.blocks, [action.payload.number]: action.payload },
       };
     case FETCH_BLOCK.FAILURE:
+      console.log(action);
       return {
-        blocks: { ...state.blocks, [action.payload]: { isLoading: false, error: action.payload } },
+        ...state,
+        blocks: { ...state.blocks, [action.payload.number]: { isLoading: false, error: action.payload.error } },
       };
     default:
       return state;
