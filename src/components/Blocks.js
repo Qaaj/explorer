@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import BlockHeight from './BlockHeight';
 import { fetchBlock } from "../constants";
 
 class Blocks extends React.Component {
@@ -10,9 +11,11 @@ class Blocks extends React.Component {
 
   render() {
     const { props } = this;
-    return (<div>
-      <h3>{props.blocks.blockHeight}</h3>
-      {JSON.stringify(Object.keys(props.blocks.blocks))}
+    return (<div style={{ height: '100vh' }}>
+      <ul>
+        {Object.keys(props.blocks.blocks).map((item) => <li key={item}>{item}</li>)}
+      </ul>
+      <BlockHeight />
     </div>)
   }
 }

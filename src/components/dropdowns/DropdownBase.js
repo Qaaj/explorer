@@ -5,7 +5,6 @@ import { Box } from 'rebass'
 const DropdownBase = ({ placeholder, options, onChange }) => {
   return (
       <Box>
-        <Label htmlFor='country'>Web3 Provider</Label>
         <Select
             id='providers'
             name='providers'
@@ -16,7 +15,7 @@ const DropdownBase = ({ placeholder, options, onChange }) => {
               <option
                   key={key}
                   value={value}>
-                {text}
+                {`Provider: ${text}`}
               </option>
           ))}
         </Select>

@@ -5,12 +5,16 @@
   "main": "index.js",
   "dependencies": {
     "@rebass/forms": "^4.0.3",
+    "@rebass/position": "^1.0.0-3",
     "@rebass/preset": "^4.0.3",
     "components": "^0.1.0",
+    "cytoscape": "^3.9.1",
     "emotion-theming": "^10.0.14",
+    "localforage": "^1.7.3",
     "lodash": "^4.17.15",
     "parcel-bundler": "^1.12.3",
     "react": "^16.9.0",
+    "react-animations": "^1.0.0",
     "react-dom": "^16.9.0",
     "react-redux": "^7.1.0",
     "rebass": "^4.0.3",
@@ -22,6 +26,8 @@
     "rxjs-compat": "^6.5.2",
     "semantic-ui-react": "^0.87.3",
     "src": "^1.1.2",
+    "styled-components": "^4.3.2",
+    "styled-system": "^5.1.0",
     "web3": "^1.2.1"
   },
   "devDependencies": {

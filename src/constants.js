@@ -23,4 +23,3 @@ export const fetchBlock = createActions(FETCH_BLOCK);
 export const fetchHeight = createActions(FETCH_HEIGHT);
 export const fetchTx = createActions(FETCH_TX);
 export const polling = createActions(POLLING);
-console.log(polling);

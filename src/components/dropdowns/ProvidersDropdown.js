@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { changeProvider } from '../../reducers/SettingsReducer';
 import DropdownBase from './DropdownBase';
+import { Absolute } from '@rebass/position';
 
 class ProvidersDropdown extends React.Component {
   constructor(props) {
@@ -48,9 +49,13 @@ class ProvidersDropdown extends React.Component {
       providerName = "injected"
     }
 
-    return (<DropdownBase placeholder={providerName}
-                          options={options}
-                          onChange={(value) => this.onChangeHandler(value)} />);
+    return (<Absolute right={10} top={10} width={220}>
+      <DropdownBase
+          placeholder={providerName}
+          options={options}
+          onChange={(value) => this.onChangeHandler(value)}
+      />
+    </Absolute>);
   }
 }
 
