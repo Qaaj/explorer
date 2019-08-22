@@ -49,7 +49,7 @@ class ProvidersDropdown extends React.Component {
       providerName = "injected"
     }
 
-    return (<Absolute right={10} top={10} width={220}>
+    return (<Absolute zIndex={10} right={10} top={10} width={220}>
       <DropdownBase
           placeholder={providerName}
           options={options}

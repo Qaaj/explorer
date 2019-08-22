@@ -1,5 +1,17 @@
 import { combineEpics, ofType } from 'redux-observable';
-import { take, tap, takeUntil, mergeMap, map, retry, retryWhen, catchError, delay, every, filter } from 'rxjs/operators';
+import {
+  take,
+  tap,
+  takeUntil,
+  mergeMap,
+  map,
+  retry,
+  retryWhen,
+  catchError,
+  delay,
+  every,
+  filter
+} from 'rxjs/operators';
 import { interval, from, of, defer, pipeIf } from 'rxjs';
 import _ from 'lodash';
 import {
@@ -13,7 +25,6 @@ import {
 // Promise to get a block
 
 const getBlock = (id, web3) => {
-  console.log(id,web3)
   return new Promise((ok, nok) => {
     web3.eth.getBlock(id, (a, b) => {
       if (b) return ok(b);
@@ -26,21 +37,20 @@ const getBlock = (id, web3) => {
 // Defer the promise to re-use it
 
 const getBlockObservable = (id, web3) => {
-  console.log(web3)
   return defer(() => from(getBlock(id, web3)));
 }
 
-const fetchBlockEpic = (action$, store) => action$.pipe(
+export const fetchBlockEpic = (action$, store) => action$.pipe(
     ofType(FETCH_BLOCK.START),
     mergeMap(action => {
           const { web3 } = store.value.settings;
-          console.log(store);
           if (
               store.value.blocks.blocks[action.payload] &&
               !store.value.blocks.blocks[action.payload].error &&
               !store.value.blocks.blocks[action.payload].isLoading
           ) return of({ type: 'NONE' });
-          return getBlockObservable(action.payload, web3).pipe(
+          return getBlockObservable(action.payload,
+              web3).pipe(
               map((data) => fetchBlock.success(data)),
               retry(2),
               catchError((err) => of(fetchBlock.failure(err))),
@@ -64,9 +74,7 @@ export const getLastBlock = (action$, store) => action$.pipe(
     map((lastBlock) => {
       const { blockHeight } = store.value.blocks;
       let missingBlocks = []
-      if (blockHeight) {
-        missingBlocks = _.range(blockHeight, lastBlock);
-      }
+      missingBlocks = _.range((blockHeight || lastBlock - 5), lastBlock);
       return { lastBlock, missingBlocks };
     }),
     mergeMap(({ lastBlock, missingBlocks }) => from([

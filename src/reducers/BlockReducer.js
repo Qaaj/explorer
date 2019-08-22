@@ -22,7 +22,6 @@ export default function rootReducer(state = initialState, action) {
         blocks: { ...state.blocks, [action.payload.number]: action.payload },
       };
     case FETCH_BLOCK.FAILURE:
-      console.log(action);
       return {
         ...state,
         blocks: { ...state.blocks, [action.payload.number]: { isLoading: false, error: action.payload.error } },
