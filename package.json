@@ -4,6 +4,7 @@
   "description": "Ethereum Blockchain Explorer using Cytoscape and LineUp",
   "main": "index.js",
   "dependencies": {
+    "@babel/core": "^7.5.5",
     "@rebass/forms": "^4.0.3",
     "@rebass/position": "^1.0.0-3",
     "@rebass/preset": "^4.0.3",
@@ -34,7 +35,6 @@
   },
   "devDependencies": {
     "@babel/cli": "^7.5.5",
-    "@babel/core": "^7.5.5",
     "@babel/plugin-proposal-class-properties": "^7.5.5",
     "@babel/plugin-transform-runtime": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
