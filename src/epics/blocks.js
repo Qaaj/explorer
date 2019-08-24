@@ -19,6 +19,7 @@ import {
   fetchBlock,
   fetchHeight,
   FETCH_HEIGHT,
+  ADD_SELECTION, fetchTx,
 } from '../constants';
 
 
@@ -59,6 +60,22 @@ export const fetchBlockEpic = (action$, store) => action$.pipe(
     ),
     filter(action => action.type !== 'NONE')
 );
+
+export const addBlockToSelection = (action$, store) => action$.pipe(
+    ofType(ADD_SELECTION.START),
+    filter(action => action.payload.type === 'block'),
+    mergeMap(action => {
+        const block = store.value.blocks.blocks[action.payload.id];
+        console.log(block);
+        if(block && block.transactions){
+          return of(fetchTx.start(block.transactions));
+        }
+        return of({ type: 'NONE' });
+        }
+    ),
+    filter(action => action.type !== 'NONE')
+);
+
 
 // Get the last block (blockHeight). Also load any blocks we missed in between
 

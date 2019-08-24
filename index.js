@@ -17,7 +17,7 @@ Web3.get().then((web3) => {
   const store = createStore(web3);
   window.store = setStore(store);
 
-  store.dispatch(polling.start());
+  // store.dispatch(polling.start());
   store.dispatch(fetchHeight.start());
 
   ReactDOM.render(
