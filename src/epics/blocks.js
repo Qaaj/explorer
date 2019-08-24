@@ -19,7 +19,7 @@ import {
   fetchBlock,
   fetchHeight,
   FETCH_HEIGHT,
-  ADD_SELECTION, fetchTx,
+  ADD_CYTOSCAPE, fetchTx,
 } from '../constants';
 
 
@@ -61,12 +61,11 @@ export const fetchBlockEpic = (action$, store) => action$.pipe(
     filter(action => action.type !== 'NONE')
 );
 
-export const addBlockToSelection = (action$, store) => action$.pipe(
-    ofType(ADD_SELECTION.START),
+export const addBlockToCytoscape = (action$, store) => action$.pipe(
+    ofType(ADD_CYTOSCAPE.START),
     filter(action => action.payload.type === 'block'),
     mergeMap(action => {
         const block = store.value.blocks.blocks[action.payload.id];
-        console.log(block);
         if(block && block.transactions){
           return of(fetchTx.start(block.transactions));
         }

@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import BlockHeight from './BlockHeight';
 import { Flex, Box } from 'rebass';
-import { addSelection } from "../constants";
+import { addCytoscape } from "../constants";
 
 class Blocks extends React.Component {
 
@@ -12,18 +12,30 @@ class Blocks extends React.Component {
 
   render() {
     const { props } = this;
-    return (<div style={{ height: '100vh' }}>
+    console.log(props.selection);
+    return (<div>
       <Flex flexWrap="wrap">
         {Object.keys(props.blocks.blocks).map((item) => <Box
             style={{cursor: 'pointer'}}
             key={item} m={2}
-            onClick={()=> props.dispatch(addSelection.start({type: 'block', id: item}))}
+            onClick={()=> props.dispatch(addCytoscape.start({type: 'block', id: item}))}
             p={1}
             color='white'
             bg='primary'>
           {item}
         </Box>)}
       </Flex>
+      <hr />
+      <div>
+        {props.selection.map((item) => {
+          let data;
+          if(item.type === 'block') data = props.blocks[item.id] || {};
+          if(item.type === 'tx') data = props.blocks.transactions[item.id] || {};
+          return <div key={item.id}>
+            {Object.entries(data).map(([a,b],i) => <div key={i}><b>{a}:</b> {b}</div>) }
+          </div>
+        })}
+      </div>
       <BlockHeight />
     </div>)
   }
@@ -32,7 +44,8 @@ class Blocks extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    blocks: state.blocks || {}
+    blocks: state.blocks || {},
+    selection: state.blocks.selection || []
   };
 }
 

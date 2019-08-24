@@ -27,7 +27,7 @@ const HoverHolder = styled(Absolute)`
 
 const BlockHeight = (props) => {
   const BouncyDiv = styled.div`animation: 1s ${bounceAnimation};`;
-  return (<HoverHolder bottom={10} left={10}>
+  return (<HoverHolder top={10} left={10}>
     <BouncyDiv>
       <Flex onClick={() => props.dispatch(fetchHeight.start())}>
         Latest Block: #{props.blockHeight}

@@ -10,8 +10,14 @@ import {
 
 const CytoHolder = styled.div`
   width: 100%;
-  height: 600px;
+  height: 500px;
 `;
+
+export const nodeColors = {
+  /* Legacy Start */
+  block: '#1E88E5',
+  tx: '#26b822',
+};
 
 class Cytoscape extends React.Component {
 
@@ -24,23 +30,39 @@ class Cytoscape extends React.Component {
     // New instance every time component mounts
     const cy = window.cyto = cytoscape({
       container: document.getElementById('cy'),
-      userZoomingEnabled: false,
+      userZoomingEnabled: true,
       style: [
         {
-          selector: 'node',
+          selector: 'node[type="block"]',
           style: {
+            'shape': 'diamond',
+            'background-color':  nodeColors.block,
             'label': 'data(id)'
           }
         },
-
         {
-          selector: '.mid',
+          selector: 'edge',
           style: {
-            'width': 8,
-            'height': 8,
-            'label': ''
+            'width': '1'
           }
-        }
+        },
+        {
+          selector: 'node[type="tx"]',
+          style: {
+            'label': '',
+            'shape': 'circle',
+            'background-color': nodeColors.tx,
+            width: 'data(txSize)',
+            height: 'data(txSize)'
+          }
+        },
+        {
+          selector: 'node[type="tx"]:selected',
+          style: {
+            'background-color': 'red',
+            border: '1px solid blue',
+          }
+        },
       ],
     });
     cytoStyles(cy);

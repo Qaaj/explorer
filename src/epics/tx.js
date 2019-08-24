@@ -3,7 +3,6 @@ import {
  FETCH_TX, fetchTx
 } from '../constants';
 import { filter, mergeMap ,tap } from "rxjs/operators";
-import { defer, from, of } from 'rxjs';
 
 
 const getTx = (id, web3) => {
